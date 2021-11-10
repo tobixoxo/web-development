@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .gridcontainer{
+                align-self: center;
+                display: grid;
+                grid-template-columns: 200px 200px 200px;
+                padding: 10px;
+            }
+
+            .griditem{
+            background-color: rgb(255, 255, 255);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 30px;
+            text-align: center; 
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Rock Paper Scissors!</h1>
+        <p>choose the move you wanna play :)</p>
+        <div class = "gridcontainer">
+            <div class = "griditem" ><img src = "rock.png"id = "rock" ></div>
+            <div class = "griditem" ><img src = "scissors.png" id = "scissors"></div>
+            <div class = "griditem" > <img src = "paper.png" id = "paper"></div>
+        </div>
+        <button type = "button" id = "play">play!</button>
+        <br>
+        <div id = "board">scoreboard : </div>
+    
+        <!-- <button type="button"> end </button> -->
+    </body>
+    <script>
+        //move : 1 = rock, 2 = paper, 3 = scissors
+        var move = 0;
+        var myscore = 0;
+        var PCscore = 0;
+        var pcmove = 0;
+        var rock = document.getElementById("rock")
+        rock.addEventListener("click",function()
+        {
+            move = 1;
+            console.log(move)
+            
+        })
+        var scissors = document.getElementById("scissors")
+        scissors.addEventListener("click",function()
+        {
+            move = 2;
+            console.log(move)
+        })
+        var paper = document.getElementById("paper")
+        paper.addEventListener("click",function()
+        {
+            move = 3;
+            console.log(move)
+        })
+
+        var start = document.getElementById("play")
+        start.addEventListener("click",function(){
+            pcmove = Math.floor((Math.random() * 4) + 1);
+            if(pcmove == move)
+            {
+                document.getElementById("board").innerHTML = "same move :| YOUR SCORE : " + myscore + " PC SCORE : " + PCscore; 
+                console.log("YOUR SCORE : " + myscore + " PC SCORE : " + PCscore)
+            }
+            else if((pcmove == 1 && move == 2) || (pcmove == 2 && move == 3) || (pcmove == 3 && move == 1))
+            {
+                PCscore++;
+                document.getElementById("board").innerHTML = "pc beats :( YOUR SCORE : " + myscore + " PC SCORE : " + PCscore;
+                console.log("YOUR SCORE : " + myscore + " PC SCORE : " + PCscore)
+            }
+            else if((pcmove == 2 && move == 1) || (pcmove == 3 && move == 2) || (pcmove == 1 && move == 3))
+            {
+                myscore++;
+                document.getElementById("board").innerHTML = "you beat pc ^^ YOUR SCORE : " + myscore + " PC SCORE : " + PCscore;
+                console.log("YOUR SCORE : " + myscore + " PC SCORE : " + PCscore)
+            }
+        })
+        
+
+    </script>
+</html>
